@@ -1,26 +1,24 @@
-import React, { useState } from 'react';
+import React from 'react';
+import useForm from './useForm';
 
 const Form = () => {
 
-    const [values, setValues] = useState({email: '', password: ''});
+    const [
+        values,
+        handleChange,
+        handleSubmit
+    ] = useForm(submit);   
 
-    const handleChange = event => {
-        const {name, value} = event.target;
-        setValues({
-            ...values,
-            [name]: value
-        });
-        
-    }
+    // const function vs function
+    // const function may cause problem => temporal dead zone
+    // const function must be declare before used
+    // function maybe suitable in this situation
+    // const submit = () => {
+    //     console.log('sumbit succesfully');
+    // }
 
-    const handleSubmit = event => {
-        event.preventDefault(); // prevent browser default behaviour that refresh every time form submitted
-
-        submit();
-    }
-
-    const submit = () => {
-        console.log('sumbit succesfully');
+    function submit() {
+        console.log('submit succesfully');
     }
 
     return (
@@ -67,6 +65,8 @@ const Form = () => {
 
 // handle changes
 // handle submit
+
+// create custom React Hook
 
 // handle errors
 // show errors if there are errors
