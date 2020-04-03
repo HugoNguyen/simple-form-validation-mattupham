@@ -1,13 +1,15 @@
 import React from 'react';
 import useForm from './useForm';
+import validate from './validateLogin';
 
 const Form = () => {
 
     const [
         values,
         handleChange,
-        handleSubmit
-    ] = useForm(submit);   
+        handleSubmit,
+        errors
+    ] = useForm(submit, validate);   
 
     // const function vs function
     // const function may cause problem => temporal dead zone
@@ -34,7 +36,7 @@ const Form = () => {
                             value={values.email}
                             onChange={handleChange} 
                         />
-                        {/* error message here */}
+                        {errors.email && <p>{errors.email}</p>}
                     </div>
                 </div>
                 
@@ -48,7 +50,7 @@ const Form = () => {
                             value={values.password}
                             onChange={handleChange}
                         />
-                        {/* error message here */}
+                        {errors.password && <p>{errors.password}</p>}
                     </div>
                 </div>
                 
